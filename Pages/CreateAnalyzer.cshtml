@@ -1,0 +1,35 @@
+﻿@page
+@using TestWebApplication.ViewModel
+@model CreateAnalyzerViewModel
+<body>
+    <form method="post">
+        <div class="border p-3 mt-4">
+            <div class="row pb-2">
+                <h2 class="text-primary">Редактирование</h2>
+                <hr />
+            </div>
+            @*<div asp-validation-summary="All"></div>*@
+            <div class="mb-3">
+                <label asp-for="Analyzer.Name"></label>
+                <input asp-for="Analyzer.Name" class="form-control" />
+                <span asp-validation-for="Analyzer.Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Analyzer.MeasureInterval"></label>
+                <input asp-for="Analyzer.MeasureInterval" class="form-control" />
+                <span asp-validation-for="Analyzer.MeasureInterval" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Analyzer.Type"></label>
+                <input asp-for="Analyzer.Type" class="form-control" />
+                <span asp-validation-for="Analyzer.Type" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:150px">Добавить</button>
+            <a asp-action="Index" class="btn btn-secondary" style="width:150px">Назад</a>
+        </div>
+    </form>
+
+
+
+
+</body>

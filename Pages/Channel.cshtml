@@ -1,0 +1,87 @@
+﻿@page
+@using TestWebApplication.ViewModel
+@model ChannelViewModel
+@{
+    ViewData["Title"] = "Channel page";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        div.form-group {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+
+        <h1>Каналы анализатора</h1>
+        <form method="post">
+            <div class="border p-3 mt-4">
+                <div class="row pb-2">
+                    <h2 class="text-primary">Анализатор</h2>
+                    <hr />
+                </div>
+                @*<div asp-validation-summary="All"></div>*@
+                <div class="mb-3">
+                    <label asp-for="Analyzer.Name"></label>
+                    <input asp-for="Analyzer.Name" class="form-control" />
+                    <span asp-validation-for="Analyzer.Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Analyzer.MeasureInterval"></label>
+                    <input asp-for="Analyzer.MeasureInterval" class="form-control" />
+                    <span asp-validation-for="Analyzer.MeasureInterval" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Analyzer.Type"></label>
+                    <input asp-for="Analyzer.Type" class="form-control" />
+                    <span asp-validation-for="Analyzer.Type" class="text-danger"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+
+
+        <h1>Каналы</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Свойство</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model.AnalyzerChannels)
+                {
+                    <tr>
+                        <td width="100">@obj.IdchannelNavigation.Name</td>
+                        <td width="100">@obj.IdchannelNavigation.IsHot</td>
+                        <td>
+                            <form method="post">
+                                <a asp-area="" asp-route-id="@obj.IdchannelNavigation.Id" asp-page="/EditChannel">Редактировать</a>
+                                <button type="submit" asp-page-handler="delete" asp-route-id="@obj.IdchannelNavigation.Id">
+                                    Удалить
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @*<div class="form-group">
+        <label>Добавить канал</label>
+        <select id="drpList" name="drpList" asp-items="@(new SelectList(Model.Channels, "Id", "Name","IsHot"))" class="selectpicker col-offset-3">
+            <option value="">-- Выбор канала --</option>
+        </select>
+        <form onclick="">
+            <button type="submit" class="btn btn-primary" style="width:150px">Обновить</button>
+        </form>
+    </div>*@
+</body>
+

@@ -1,0 +1,48 @@
+﻿@page
+@using TestWebApplication.ViewModel
+@model IndexViewModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+    <h1>Анализаторы</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Интервал измерения</th>
+                <th>Тип</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.Analyzers)
+            {
+                <tr>
+                    <td>@obj.Name</td>
+                    <td>@obj.MeasureInterval</td>
+                    <td>@obj.Type</td>
+                    <td>
+                        <form method="post">
+                            <a asp-area="" asp-route-id="@obj.Id" asp-page="/Channel">Каналы</a>
+                            <a asp-area="" asp-route-id="@obj.Id" asp-page="/Edit">Редактировать</a>
+                            <button type="submit" asp-page-handler="delete" asp-route-id="@obj.Id">
+                                Удалить
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+   
+</body>
+
+

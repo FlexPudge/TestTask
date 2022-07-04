@@ -1,0 +1,31 @@
+﻿@page
+@using TestWebApplication.ViewModel
+@model CreateChannelViewModel
+@{
+}
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Редактирование</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All"></div>*@
+        <div class="mb-3">
+            <label asp-for="Channel.Name"></label>
+            <input asp-for="Channel.Name" class="form-control" />
+            <span asp-validation-for="Channel.Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Channel.IsHot"></label>
+            <select asp-for="Channel.IsHot" class="form-control"
+                    asp-items="@(new SelectList(Model.SelectedChannel,"Name","Id"))">
+                <option value="">-- Выбор --</option>
+            </select>
+            <span asp-validation-for="Channel.IsHot" class="text-danger" />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">Обновить</button>
+        <a asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Назад
+        </a>
+    </div>
+</form>
